@@ -101,7 +101,7 @@ def put_images_onto_image(images_list, image, num_of_images):
     """
 
     for i in range(num_of_images):
-        random_num = random.randint(0, len(images_list)-1)
+        random_num = random.randint(0, len(images_list) - 1)
         image_to_be_put = images_list[random_num]
         image = image_maker(image_to_be_put, image)
     return image

@@ -97,7 +97,7 @@ def get_emoji(word, file_path="../support_files/emoji/"):
         onlyfiles = [f for f in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, f))]
         for file in onlyfiles:
             if norm(word)[0] in get_filename(file):
-                lis.append(file_path+file)
+                lis.append(file_path + file)
         return lis
     except Exception:
         return []

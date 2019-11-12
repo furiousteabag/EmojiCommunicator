@@ -28,8 +28,8 @@ Typical usage example:
 
 from PIL import ImageFont, ImageDraw, Image, ImageOps
 
-import face_recognition
-import numpy as np
+# import face_recognition
+# import numpy as np
 import random
 
 import os
@@ -73,9 +73,9 @@ def write_text_with_squares_not_dependent(phrase,
     """Shell for write_text_with_squares method.
     """
 
-    width = int(height*2)
-    font_size = int(3000/len(phrase))
-    margin = (int(width/font_size)*25, int(height/font_size)*150)
+    width = int(height * 2)
+    font_size = int(3000 / len(phrase))
+    margin = (int(width / font_size) * 25, int(height / font_size) * 150)
 
     return write_text_with_squares(phrase=phrase,
                                    height=height,
@@ -92,7 +92,7 @@ def prepare_emoji_list(emoji_list,
     """Preparing emojies to be put on picture.
     """
 
-    return list(map(lambda x: x.convert("RGBA").resize((int(font_size/10), int(font_size/10))), emoji_list))
+    return list(map(lambda x: x.convert("RGBA").resize((int(font_size / 10), int(font_size / 10))), emoji_list))
 
 
 def fill_text_with_emojies(emoji_list,
@@ -108,7 +108,7 @@ def fill_text_with_emojies(emoji_list,
     for x in range(width):
         for y in range(height):
             if image.getpixel((x, y)) != back_ground_color:
-                random_num = random.randint(0, len(emoji_list)-1)
+                random_num = random.randint(0, len(emoji_list) - 1)
                 img_to_paste = emoji_list[random_num]
                 out.paste(img_to_paste, (x, y), mask=img_to_paste)
 
@@ -128,7 +128,7 @@ def write_text_with_emojies(text,
     emoji_list = prepare_emoji_list(emoji_list, font_size)
     out = fill_text_with_emojies(emoji_list, image)
 
-    out.save(output_dir+str(i)+text+".png", "PNG")
+    out.save(output_dir + str(i) + text + ".png", "PNG")
 
     return out
 
@@ -142,38 +142,22 @@ def write_text_with_faces(text,
 
     pictures_paths_list = list(map(lambda x: pictures_to_write_missing_letters_with_path + x,
                                    os.listdir(pictures_to_write_missing_letters_with_path)))
-    pictures_paths_list = list(map(lambda x: crop_face(Image.open(x)), pictures_paths_list))
-    pictures_paths_list = list(map(lambda x: make_circled_image(x), pictures_paths_list))
+#    pictures_paths_list = list(map(lambda x: crop_face(Image.open(x)), pictures_paths_list))
+    pictures_paths_list = list(
+        map(lambda x: make_circled_image(Image.open(x)), pictures_paths_list))
 
     image, font_size = write_text_with_squares_not_dependent(text)
     pictures_paths_list = prepare_emoji_list(pictures_paths_list, font_size)
 
     out = fill_text_with_emojies(pictures_paths_list, image)
-    out.save(output_dir+str(i)+text+".png", "PNG")
+    out.save(output_dir + str(i) + text + ".png", "PNG")
 
     return out
 
 
 """
-Cropping and circling face.
+Circling picture.
 """
-
-
-def crop_face(img):
-    """Returns face from image.
-    """
-
-    img_array = np.array(img)
-    face_locations = face_recognition.face_locations(img_array)
-
-    x = face_locations[0][3]
-    y = face_locations[0][0]
-    max_x = face_locations[0][1]
-    max_y = face_locations[0][2]
-
-    cut = img.crop((x, y, max_x, max_y))
-
-    return cut
 
 
 def make_circled_image(img):
@@ -239,3 +223,19 @@ def squeeze_squares_into_pixels(image,
                         if (w_black != w or h_black != h):
                             image.putpixel((w_black, h_black), back_ground_color)
     return image
+
+# def crop_face(img):
+#     """Returns face from image.
+#     """
+#
+#     img_array = np.array(img)
+#     face_locations = face_recognition.face_locations(img_array)
+#
+#     x = face_locations[0][3]
+#     y = face_locations[0][0]
+#     max_x = face_locations[0][1]
+#     max_y = face_locations[0][2]
+#
+#     cut = img.crop((x, y, max_x, max_y))
+#
+#     return cut
