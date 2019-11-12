@@ -1,3 +1,8 @@
+"""
+Main module that is used for parsing input
+arguments and launching program.
+"""
+
 from generate_gif import generate_gif
 import argparse
 
