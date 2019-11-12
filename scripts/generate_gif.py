@@ -1,4 +1,3 @@
-
 """
 This module contains methods collecting all program,
 which includes tokenizing input text, make image from
@@ -13,8 +12,8 @@ Typical usage example:
 
 from PIL import Image
 
-from tokenization import get_kphrases, get_emoji
-from text_visualization import write_text_with_emojies, write_text_with_faces
+from .tokenization import get_kphrases, get_emoji
+from .text_visualization import write_text_with_emojies, write_text_with_faces
 
 import os
 import shutil
