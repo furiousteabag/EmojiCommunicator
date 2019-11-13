@@ -26,6 +26,10 @@ To use you have to clone this repo, install requirements, go to scripts folder a
 
 ```bash
 pip install -r requirements.txt
+pip install git+https://github.com/boudinfl/pke.git
+python -m nltk.downloader stopwords
+python -m nltk.downloader universal_tagset
+python -m spacy download en
 ```
 Usage example:
 
@@ -39,10 +43,10 @@ usage: make_gif.py [-h] [-t TEXT] [-p PICTURES] [-o OUTPUT]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -t TEXT, --text TEXT  Text that you want to make .gif of.
+  -t TEXT, --text TEXT  text that you want to make .gif of
   -p PICTURES, --pictures PICTURES
-                        Path to folder with pictures that will be used for
-                        painting letters.
+                        path to folder with pictures that will be used for
+                        painting letters
   -o OUTPUT, --output OUTPUT
-                        Path to folder that .gif will be saved.
+                        path to folder that .gif will be saved
 ```
