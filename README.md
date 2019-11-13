@@ -26,6 +26,10 @@ To use you have to clone this repo, install requirements, go to scripts folder a
 
 ```bash
 pip install -r requirements.txt
+pip install git+https://github.com/boudinfl/pke.git
+python -m nltk.downloader stopwords
+python -m nltk.downloader universal_tagset
+python -m spacy download en
 ```
 Usage example:
 
