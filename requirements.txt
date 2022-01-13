@@ -1,4 +1,4 @@
 nltk==3.4.5
 numpy==1.16.4
 pke==1.81
-Pillow==6.2.1
+Pillow==9.0.0
